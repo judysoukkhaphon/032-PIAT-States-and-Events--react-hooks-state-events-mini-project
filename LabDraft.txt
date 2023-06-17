@@ -1,0 +1,49 @@
+pass down the data imported in App to other components
+
+See console message for which data should be passed to TASK and CATEGORY
+
+1. TaskList: display all tasks. Pass task data from App to TaskList, display each using a Task component. Use a Key prop.
+	(had to assign keys, then access them by passing the keys under another propname)
+2. Task: update Task component to show task's text and category. On Delete click, remove task from list.
+	(wrote the function in App, which is passed through TaskList to Task, where it's called)
+
+3. CategoryFilter: Pass list of categories to CategoryFilter from App. Update this component to display <button>'s for each category. buttons need a key prop equal to the category to pass tests.
+	When a button is clicked:
+		1. should have a class of "selected", while the others do not.
+		2. the displayed list of tasks should be filtered by matching category that was clicked
+		3. if "All" button is clicked, display all tasks
+
+4. NewTaskForm: Pass list of categories to NewTaskForm from App. Update to display <option> elements for each category inside of a <select> element except the "All" category. Update this form to be a controlled component, so all form inputs are captured in state. onSubmit, add a new task to the list with the text and category from the form. To pass test, you'll need a prop "onTaskFormSubmit" that takes a task OBJECT as an argument.
+
+-----------------------------------------------------------------
+Console.log of data to pass from App:
+CATEGORIES
+
+0: "All"
+1: "Code"
+2: "Food"
+3: "Money"
+4: "Misc"
+
+
+TASKS
+
+0: {text: 'Buy rice', category: 'Food'}
+1: {text: 'Save a tenner', category: 'Money'}
+2: {text: 'Build a todo app', category: 'Code'}
+3: {text: 'Build todo API', category: 'Code'}
+4: {text: 'Get an ISA', category: 'Money'}
+5: {text: 'Cook rice', category: 'Food'}
+6: {text: 'Tidy house', category: 'Misc'}
+-----------------------------------------------------------
+Learned:
+"key" props aren't actually passed, they are used as a reference for React.
+If you need to access a "key" value, you have to pass it (again) under another prop name.
+
+Children can only have 1 parent, so data must be passed through the parent to move to siblings.
+
+In this lab, the component that the data is created in handles the *{state}* of that data in it's file. If another component affects the state, then a function is passed to the child, so when the child calls the function it can pass data back to the component that is actually handling the state.
+
+-----------------------------------------------------------
+Questions:
+I used non-destructive operators to copy the TASKS into taskList but for some reason, when printing TASKS, the added "id" key appears there too, and not just when I print taskList.
